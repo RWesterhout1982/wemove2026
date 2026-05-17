@@ -1314,6 +1314,121 @@
     margin-top: 0.75rem;
   }
 
+
+  /* ─── WARM WEER BANNER ─── */
+  .warmte-banner {
+    background: linear-gradient(135deg, #FF6B35, #FF8C42);
+    color: white;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(255,107,53,0.3);
+  }
+
+  .warmte-banner-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .warmte-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.4rem;
+  }
+
+  .warmte-tip {
+    font-size: 0.82rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 0.35rem 0.6rem;
+    line-height: 1.3;
+  }
+
+  /* ─── MOBILE IMPROVEMENTS ─── */
+  @media (max-width: 600px) {
+    /* Nav scrollable on mobile */
+    nav { overflow-x: auto; }
+    .nav-links { flex-wrap: nowrap; white-space: nowrap; }
+    
+    /* Hero compact */
+    .hero { min-height: 75vh; padding: 3rem 1rem 2rem; }
+    .hero-stats { gap: 0.75rem; }
+    .stat-card { padding: 0.7rem 1rem; }
+    .stat-value { font-size: 1.6rem; }
+    
+    /* Section headers compact */
+    .section-number { font-size: 2rem; }
+    .section-title-wrap h2 { font-size: 1.5rem; }
+    
+    /* Day cards - event layout */
+    .event-item { flex-direction: column; gap: 0.2rem; }
+    .event-time { min-width: unset; font-size: 0.8rem; }
+    .event-text { font-size: 0.85rem; }
+    
+    /* Timeline scroll hint */
+    .timeline-scroll { padding-bottom: 0.5rem; }
+    .tl-stop { min-width: 100px; }
+    .tl-label { font-size: 0.65rem; }
+    .tl-km { font-size: 0.6rem; }
+    
+    /* Diner grid */
+    .diner-grid { grid-template-columns: 1fr; }
+    .diner-drinks { grid-template-columns: 1fr 1fr; }
+    
+    /* Warmte tips */
+    .warmte-tips { grid-template-columns: 1fr; }
+    
+    /* Pack list */
+    .pack-list { grid-template-columns: 1fr; }
+    
+    /* Kamp cards */
+    .kamp-grid { grid-template-columns: 1fr 1fr; }
+
+    /* Team members grid */  
+    .members-grid { grid-template-columns: repeat(3, 1fr); }
+    .member-photo-wrap { width: 60px; height: 60px; }
+    .member-name { font-size: 0.72rem; }
+    .member-role { font-size: 0.6rem; }
+
+    /* Modal fullscreen on mobile */
+    .diner-modal-overlay { padding: 0; align-items: flex-end; }
+    .diner-modal { border-radius: 16px 16px 0 0; max-height: 85vh; overflow-y: auto; }
+
+    /* Route stats */
+    .route-stats { grid-template-columns: repeat(3, 1fr); }
+    .route-stat-val { font-size: 1.4rem; }
+
+    /* Map button */
+    .map-preview-banner { flex-direction: column; }
+    .map-open-btn { width: 100%; text-align: center; }
+    
+    /* Info cards */
+    .info-cards { grid-template-columns: 1fr; }
+  }
+
+  /* Scroll hint arrow for timeline */
+  .timeline-hint {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-align: right;
+    margin-bottom: 0.4rem;
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .timeline-hint { display: block; }
+  }
+
 </style>
 </head>
 <body>
@@ -1346,7 +1461,7 @@
 
     <div class="hero-stats">
       <div class="stat-card">
-        <div class="stat-value">544</div>
+        <div class="stat-value">548</div>
         <div class="stat-label">km totaal</div>
       </div>
       <div class="stat-card">
@@ -1382,6 +1497,20 @@
       </div>
     </div>
 
+    <div class="warmte-banner">
+      <div class="warmte-banner-title">☀️ Warm weekend — let goed op jezelf en elkaar!</div>
+      <div class="warmte-tips">
+        <div class="warmte-tip">👕 Lichte, ademende kleding, wissel regelmatig van shirt</div>
+        <div class="warmte-tip">🧴 Pet, zonnebril en zonnebrandcrème verplicht</div>
+        <div class="warmte-tip">💧 Drink voldoende, ook zonder dorst</div>
+        <div class="warmte-tip">🍊 Neem mineralen &amp; koolhydraten bij lange inspanning</div>
+        <div class="warmte-tip">🚫 Gebruik géén zouttabletten</div>
+        <div class="warmte-tip">🌡️ Eerder warmteklachten gehad? Extra voorzichtig!</div>
+        <div class="warmte-tip">🆘 Klachten? Trek tijdig aan de bel bij medische teams</div>
+        <div class="warmte-tip">⚠️ Wisselplekken &amp; kampen zijn off limits voor bezoekers</div>
+      </div>
+    </div>
+    
     <div class="planning-grid">
 
       <!-- WO -->
@@ -1452,7 +1581,7 @@
           <div class="day-toggle">▼</div>
         </div>
         <div class="day-events">
-          <div class="event-item"><div class="event-time">Nacht</div><div class="event-text">Crossing België — Geraardsbergen, Aalst, Dendermonde, Antwerpen</div></div>
+          <div class="event-item"><div class="event-time">Nacht</div><div class="event-text">Crossing België — Geraardsbergen, <strong>Haaltert (Wissel 3 ⚠️ nieuw!)</strong>, Dendermonde, Antwerpen</div></div>
           <div class="event-item"><div class="event-time">Dag</div><div class="event-text">Nederland in! Zundert, Tilburg, Dongen, Breda</div></div>
           <div class="event-item"><div class="event-time">Avond</div><div class="event-text">Kamp bij korfbalvereniging Etten-Leur (Wissel 6)</div></div>
           <div class="event-item"><div class="event-time">Nacht</div><div class="event-text">Doorrijden richting Roosendaal, Bergen op Zoom, Steenbergen</div></div>
@@ -1467,13 +1596,18 @@
           <div class="day-toggle">▼</div>
         </div>
         <div class="day-events">
-          <div class="event-item"><div class="event-time">Ochtend</div><div class="event-time"></div><div class="event-text"><a href="https://maps.google.com/?q=Heijningen+4794+Noord-Brabant+Netherlands" target="_blank" class="maps-link">📍 Camping Heijningen</a> — iedereen naar camping voor laatste push + burgers 🍔</div></div>
-          <div class="event-item"><div class="event-time">09:00</div><div class="event-text"><strong>Laatste etappe start</strong> — RunBikeRun Heijningen → Rotterdam (35+ km)</div></div>
-          <div class="event-item"><div class="event-time">~09:37</div><div class="event-text">Doorkomst Willemstad (Haven) — spectaculair!</div></div>
-          <div class="event-item"><div class="event-time">~12:55</div><div class="event-text">👨‍👩‍👧‍👦 <strong>Familiepunt <a href="https://maps.google.com/?q=Heinenoordtunnel+Heinenoord+Netherlands" target="_blank" class="maps-link">📍 Heinenoordtunnel</a></strong> — familie &amp; supporters kunnen hier het team aanmoedigen!</div></div>
-<div class="event-item"><div class="event-time">~13:54</div><div class="event-text"><a href="https://maps.google.com/?q=Barendrecht+2990+Netherlands" target="_blank" class="maps-link">📍 Checkpoint 13 Barendrecht</a> — bijna er!</div></div>
-          <div class="event-item"><div class="event-time">~15:09</div><div class="event-text">🎉 <strong><a href="https://maps.google.com/?q=Coolsingel+Rotterdam+Netherlands" target="_blank" class="maps-link">📍 FINISH Coolsingel Rotterdam!</a></strong></div></div>
-          <div class="event-item"><div class="event-time">~18:00</div><div class="event-text">🍺🍟 Bier met patat in <a href="https://maps.google.com/?q=Cafe+de+Loods+s-Gravendeel" target="_blank" class="maps-link">📍 <a href="https://maps.google.com/?q=Cafe+de+Loods+s-Gravendeel+Netherlands" target="_blank" class="maps-link">📍 Café de Loods</a>, 's-Gravendeel</a>! Start opruimen + schoonmaken busjes</div></div>
+          <div class="event-item"><div class="event-time">Vroeg</div><div class="event-text">☀️ Iedereen naar <a href="https://maps.app.goo.gl/njveDoJZXvFNaiHX9" target="_blank" class="maps-link">📍 Camping Heijningen</a> — minimaal 1 uur rust + 🍔 <strong>Ary's hamburgers!</strong> Iedereen trekt teamkleding aan.</div></div>
+          <div class="event-item"><div class="event-time">09:00</div><div class="event-text">🏃🚴 <strong>Laatste solo etappe start</strong> — alle 8 lopers + alle 6 fietsers vertrekken samen. RunBikeRun Heijningen → Heinenoordtunnel. Extra fietsen voor lopers worden gebracht door Chris &amp; Marco (vrijdag al inladen!) <em>Esther heeft geen fiets nodig.</em></div></div>
+          <div class="event-item"><div class="event-time">~09:38</div><div class="event-text">Doorkomst <a href="https://maps.google.com/?q=Willemstad+Haven+Netherlands" target="_blank" class="maps-link">📍 Willemstad (Haven)</a> — spectaculair!</div></div>
+          <div class="event-item"><div class="event-time">~12:51</div><div class="event-text">Doorkomst <a href="https://maps.google.com/?q=Heinenoord+Netherlands" target="_blank" class="maps-link">📍 Heinenoord</a></div></div>
+          <div class="event-item"><div class="event-time">~12:58</div><div class="event-text">👨‍👩‍👧‍👦 <strong>Familiepunt <a href="https://maps.google.com/?q=Heinenoordtunnel+Heinenoord+Netherlands" target="_blank" class="maps-link">📍 Heinenoordtunnel</a></strong> — <strong>15 min. pauze</strong> voor familie, fans &amp; sponsors. Overige teamleden komen hier met busjes vanuit 's-Gravendeel.</div></div>
+          <div class="event-item"><div class="event-time">13:15</div><div class="event-text">🚴 <strong>Laatste 20 km naar Rotterdam</strong> — 8 lopers + 4 fietsers, maximaal 11 fietsen met stickers. Overige fietsen gaan met bus van Ton naar 's-Gravendeel. Busjes + auto's richting <a href="https://maps.google.com/?q=Parkeergarage+Erasmusbrug+Rotterdam" target="_blank" class="maps-link">📍 P onder Erasmusbrug</a>.</div></div>
+          <div class="event-item"><div class="event-time">~14:03</div><div class="event-text">Doorkomst <a href="https://maps.google.com/?q=Hospice+De+Reiziger+Rotterdam" target="_blank" class="maps-link">📍 Hospice De Reiziger</a> — een bijzonder moment</div></div>
+          <div class="event-item"><div class="event-time">~14:54</div><div class="event-text">🏅 <strong><a href="https://maps.google.com/?q=Wilhelminaplein+Rotterdam" target="_blank" class="maps-link">📍 Wilhelminaplein Rotterdam</a></strong> — tijdregistratie! Hierna te voet naar Coolsingel, fietsen stallen bij Blaak.</div></div>
+          <div class="event-item"><div class="event-time">~15:07</div><div class="event-text">🎉 <strong><a href="https://maps.google.com/?q=Coolsingel+Rotterdam+Netherlands" target="_blank" class="maps-link">📍 FINISH Coolsingel Rotterdam!</a></strong> — met het volledige team onder de finishboog! 🏆</div></div>
+          <div class="event-item"><div class="event-time">~18:00</div><div class="event-text">🍺🍟 <strong>Bier met patat bij <a href="https://maps.google.com/?q=Cafe+de+Loods+s-Gravendeel+Netherlands" target="_blank" class="maps-link">📍 Café de Loods</a>, 's-Gravendeel</strong> — verdiend!</div></div>
+</div></div>
+          
         </div>
       </div>
 
@@ -1516,12 +1650,12 @@
       <div class="section-number">02</div>
       <div class="section-title-wrap">
         <h2><span class="accent-bar"></span>Route</h2>
-        <p>Parijs (FR) → België → Nederland → Rotterdam Coolsingel</p>
+        <p>Parijs (FR) → België → Nederland → Rotterdam Coolsingel · V4 route +4 km</p>
       </div>
     </div>
 
     <div class="route-stats">
-      <div class="route-stat"><div class="route-stat-val">544 km</div><div class="route-stat-lbl">totale afstand</div></div>
+      <div class="route-stat"><div class="route-stat-val">548 km</div><div class="route-stat-lbl">totale afstand</div></div>
       <div class="route-stat"><div class="route-stat-val">3</div><div class="route-stat-lbl">landen</div></div>
       <div class="route-stat"><div class="route-stat-val">7</div><div class="route-stat-lbl">wissels</div></div>
       <div class="route-stat"><div class="route-stat-val">4</div><div class="route-stat-lbl">kampstops</div></div>
@@ -1537,21 +1671,22 @@
             <span>Clastres → Rotterdam · 544 km · 3 landen</span>
           </div>
         </div>
-        <a href="https://www.google.com/maps/d/edit?mid=1A6TGw1ZIemOxiOJeMIUUbhhmnGisIGM&usp=sharing"
+        <a href="https://www.google.com/maps/d/edit?mid=14Ch94rHT_HqIpVj_sPmgniYIkTScEVM&usp=sharing"
            target="_blank" class="map-open-btn">
           📍 Open route in Maps
         </a>
       </div>
       <div class="map-embed map-desktop-only">
         <iframe
-          src="https://www.google.com/maps/d/embed?mid=1A6TGw1ZIemOxiOJeMIUUbhhmnGisIGM"
+          src="https://www.google.com/maps/d/embed?mid=14Ch94rHT_HqIpVj_sPmgniYIkTScEVM"
           allowfullscreen
           loading="lazy">
         </iframe>
       </div>
     </div>
 
-    <div class="route-timeline-title">📍 Swipe door de route — belangrijkste punten</div>
+    <div class="timeline-hint">← swipe →</div>
+    <div class="route-timeline-title">📍 Swipe door de route — belangrijkste punten <span style="font-size:0.7rem;color:var(--wm-orange);font-weight:600">· Route V4 definitief</span></div>
     <div class="timeline-scroll">
       <div class="timeline-track">
         <a href="https://maps.google.com/?q=Circuit+de+Clastres+02140+Clastres+France" target="_blank" style="text-decoration:none;color:inherit;display:contents"><div class="tl-stop checkpoint">
@@ -1578,11 +1713,11 @@
           <div class="tl-nav-hint">📍 navigeer</div>
         </div></a>
 
-        <a href="https://maps.google.com/?q=Aalst+9300+Belgium" target="_blank" style="text-decoration:none;color:inherit;display:contents"><div class="tl-stop">
+        <a href="https://maps.google.com/?q=Alitech+Haaltert+Belgium" target="_blank" style="text-decoration:none;color:inherit;display:contents"><div class="tl-stop">
           <div class="tl-dot"></div>
-          <div class="tl-label">Wissel 3<br>Aalst</div>
-          <div class="tl-km">186 km · ~04:05</div>
-          <div class="tl-tag" style="background:#555">WISSEL</div>
+          <div class="tl-label">Wissel 3<br>Haaltert ⚠️</div>
+          <div class="tl-km">186 km · ~04:04</div>
+          <div class="tl-tag" style="background:#e63329">NIEUW!</div>
           <div class="tl-nav-hint">📍 navigeer</div>
         </div></a>
 
@@ -1629,7 +1764,7 @@
         <a href="https://maps.google.com/?q=Coolsingel+Rotterdam+Netherlands" target="_blank" style="text-decoration:none;color:inherit;display:contents"><div class="tl-stop finish">
           <div class="tl-dot"></div>
           <div class="tl-label">🏆 FINISH<br>Coolsingel</div>
-          <div class="tl-km">544 km · ~15:09</div>
+          <div class="tl-km">544 km · ~15:07</div>
           <div class="tl-tag">FINISH</div>
           <div class="tl-nav-hint">📍 navigeer</div>
         </div></a>
@@ -1859,6 +1994,8 @@
 
     <div class="pack-list-wrap active" id="tab-iedereen">
       <div class="pack-list">
+        <div class="pack-item important"><div class="pack-icon">☀️</div><div><strong>Warm weekend!</strong> Zonnebrandcrème, pet, zonnebril — verplicht!</div></div>
+        <div class="pack-item important"><div class="pack-icon">💧</div><div>Extra bidon/fles — drink ook zonder dorst</div></div>
         <div class="pack-item important"><div class="pack-icon">😄</div><div>Goede zin, goed humeur, bereidwilligheid voor de ander</div></div>
         <div class="pack-item important"><div class="pack-icon">👕</div><div><strong>Teamkleding!</strong> (voor zaterdagochtend in tas 2)</div></div>
         <div class="pack-item"><div class="pack-icon">🛏️</div><div>Slaapzak / dekbed / kussen / onderlaken</div></div>
@@ -1877,7 +2014,7 @@
         <div class="pack-item"><div class="pack-icon">🎒</div><div>Kleine tas voor in de bus met wisselkleding voor onderweg</div></div>
         <div class="pack-item"><div class="pack-icon">🏊</div><div>Handdoek(en) voor in de bus (zweet/regen)</div></div>
         <div class="pack-item"><div class="pack-icon">💆</div><div>Grote handdoek voor op de massagetafel</div></div>
-        <div class="pack-item important"><div class="pack-icon">🚲</div><div><strong>Fiets voor laatste RunBikeRun (Heijningen → Rotterdam)</strong> — moet vrijdag 22 mei aanwezig zijn in 's-Gravendeel!</div></div>
+        <div class="pack-item important"><div class="pack-icon">🚲</div><div><strong>Fiets voor laatste RunBikeRun (Heijningen → Rotterdam)</strong> — vrijdag 22 mei aanwezig in 's-Gravendeel! <em>Esther: geen fiets nodig.</em> Extra fietsen worden gebracht door Chris &amp; Marco.</div></div>
       </div>
     </div>
 
@@ -1917,7 +2054,7 @@
     </div>
 
     <div class="diner-note">
-      💡 <strong>Let op:</strong> De keuzes zijn vooraf doorgegeven. Neem dit even door zodat je weet wat je besteld hebt!
+      💡 <strong>Let op:</strong> De keuzes zijn vooraf doorgegeven. Neem dit even door zodat je weet wat je besteld hebt! Ga naar <a href="#team" class="maps-link">📸 jouw foto bij het team</a> en tik op je eigen foto — dan zie je direct jouw persoonlijke bestelling.
     </div>
 
     <div class="diner-grid">
