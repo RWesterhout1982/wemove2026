@@ -1429,6 +1429,21 @@
     .timeline-hint { display: block; }
   }
 
+
+  .patat-divider {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: white;
+    background: #c05e10;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
 </style>
 </head>
 <body>
@@ -2218,11 +2233,45 @@
       <div class="diner-row"><div class="diner-row-icon">🍮</div><div class="diner-row-content"><div class="diner-row-label">Dessert</div><div class="diner-row-value" id="dinerDessert"></div></div></div>
       <div class="diner-row"><div class="diner-row-icon">🥤</div><div class="diner-row-content"><div class="diner-row-label">Drinken</div><div class="diner-row-value" id="dinerDrinken"></div></div></div>
       <div class="diner-opmerking" id="dinerOpmerking" style="display:none"></div>
+
+      <div id="patatSection" style="display:none; margin-top:0.75rem;">
+        <div class="patat-divider">🍟 Patat bij Café de Loods — maandag finish</div>
+        <div class="diner-row"><div class="diner-row-icon">🥫</div><div class="diner-row-content"><div class="diner-row-label">Saus</div><div class="diner-row-value" id="patatSaus"></div></div></div>
+        <div class="diner-row"><div class="diner-row-icon">🍗</div><div class="diner-row-content"><div class="diner-row-label">Snacks</div><div class="diner-row-value" id="patatSnacks"></div></div></div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
+const PATAT = {
+  "Bas": { saus1: "Pinda", saus2: "", snack1: "Viandel", snack2: "Bamihap" },
+  "Jarco": { saus1: "Mayo", saus2: "Pinda", snack1: "Mexicano", snack2: "Berklauw pinda" },
+  "Fee": { saus1: "Mayo", saus2: "Pinda", snack1: "Frikandel speciaal", snack2: "" },
+  "Henriette": { saus1: "Curry", saus2: "", snack1: "Nassieschijf", snack2: "" },
+  "Tim": { saus1: "Speciaal", saus2: "", snack1: "Kroket", snack2: "Mexicano" },
+  "Danique": { saus1: "Mayo", saus2: "Pinda", snack1: "Frikandel speciaal", snack2: "Kwekkerboom kroket" },
+  "Gerben": { saus1: "Pinda", saus2: "", snack1: "Berklauw Pinda", snack2: "" },
+  "Marlies": { saus1: "Mayo", saus2: "", snack1: "Kwekkerboom kroket", snack2: "" },
+  "Niels": { saus1: "Speciaal", saus2: "", snack1: "Cheeseburger", snack2: "" },
+  "Ary": { saus1: "Pinda", saus2: "Speciaal", snack1: "Kroepia", snack2: "" },
+  "Mirjam": { saus1: "Mayo", saus2: "Pinda", snack1: "Frikandel speciaal", snack2: "Kaassoufflé" },
+  "Dirk-Jan": { saus1: "Speciaal", saus2: "", snack1: "Bamihap", snack2: "" },
+  "Ron": { saus1: "Mayo", saus2: "", snack1: "Dolle mina", snack2: "" },
+  "Esther": { saus1: "", saus2: "", snack1: "", snack2: "" },
+  "Renate": { saus1: "Mayo", saus2: "Pinda", snack1: "Frikandel speciaal", snack2: "" },
+  "Rob": { saus1: "Pinda", saus2: "", snack1: "Frikandel speciaal", snack2: "Mexicano" },
+  "Leo": { saus1: "Pinda", saus2: "", snack1: "Berklauw Pinda", snack2: "Frikandel" },
+  "Elize": { saus1: "Mayo", saus2: "", snack1: "Frikandel speciaal", snack2: "Bamihap" },
+  "Christy": { saus1: "Mayo", saus2: "", snack1: "Kaassoufflé", snack2: "" },
+  "Sophie": { saus1: "", saus2: "", snack1: "", snack2: "" },
+  "Vera": { saus1: "Pinda", saus2: "", snack1: "Broodje kroket mosterd", snack2: "Frikandel" },
+  "Liz": { saus1: "Mayo", saus2: "", snack1: "Kroket met mosterd", snack2: "Kaassoufflé" },
+  "Fleur": { saus1: "Mayo", saus2: "Curry", snack1: "Luxe kaassoufflé", snack2: "" },
+  "Monique": { saus1: "Mayo", saus2: "Pinda", snack1: "Frikandel speciaal", snack2: "" },
+  "Ton": { saus1: "Mayo", saus2: "Pinda", snack1: "Frikandel speciaal", snack2: "" },
+};
+
 const DINER = {
   "Bas": { vg: "Avocado toast", hg: "Cajun-zalmsteak", bereiding: "n.v.t.", garnituur: "Rijst", saus: "Mosterd/bieslook", dessert: "2 bollen ijs", drinken: "Vittel (water)", opmerking: "" },
   "Jarco": { vg: "Uienringen 6 stuks", hg: "Classic burger", bereiding: "À point (medium)", garnituur: "Friet", saus: "Mayonaise", dessert: "Crème brûlée", drinken: "1664 25cl (bier)", opmerking: "" },
@@ -2268,6 +2317,16 @@ function showDiner(name) {
     opm.style.display = 'block';
   } else {
     opm.style.display = 'none';
+  }
+  // Patat section
+  const p = PATAT[name];
+  const patatSection = document.getElementById('patatSection');
+  if (p && (p.saus1 || p.snack1)) {
+    document.getElementById('patatSaus').textContent = [p.saus1, p.saus2].filter(Boolean).join(' + ');
+    document.getElementById('patatSnacks').textContent = [p.snack1, p.snack2].filter(Boolean).join(' + ');
+    patatSection.style.display = 'block';
+  } else {
+    patatSection.style.display = 'none';
   }
   document.getElementById('dinerModal').classList.add('open');
 }
